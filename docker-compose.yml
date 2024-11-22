@@ -1,0 +1,25 @@
+version: '3.8'
+ 
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongo-container
+    ports:
+      - "27017:27017"  # Expose MongoDB port
+    volumes:
+      - mongo-data:/data/db
+   
+ 
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    ports:
+      - "5434:5432"  # Expose PostgreSQL port
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=manager
+ 
+volumes:
+  mongo-data:
+    driver: local
